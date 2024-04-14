@@ -1,0 +1,19 @@
+.auth-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.logo {
+    text-transform: uppercase;
+    color: var(--main-color);
+    font-size: 22px;
+    text-align: center;
+    font-weight: 500;
+}

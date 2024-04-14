@@ -1,0 +1,25 @@
+header {
+    padding: 10px;
+    background-color: var(--main-color);
+    color: var(--header-text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.controlls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.header-link {
+    text-decoration: none;
+    color: var(--header-text-color);
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.header-link:hover {
+    color: var(--header-text-color-hover);
+    transition: all 0.3s;
+}
