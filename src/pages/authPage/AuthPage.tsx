@@ -3,11 +3,7 @@ import './AuthPage.scss';
 import AuthForm from '../../components/authForm/AuthForm';
 import { Link, useLocation } from 'react-router-dom';
 
-interface AuthPageProps {
-
-}
-
-const AuthPage: React.FC<AuthPageProps> = ({ }) => {
+const AuthPage = () => {
     const { pathname } = useLocation();
 
     return (

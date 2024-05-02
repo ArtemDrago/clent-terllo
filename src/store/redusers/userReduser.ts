@@ -17,13 +17,14 @@ export const taskReduser = createSlice({
         builder.addCase(saveUserData.fulfilled, (state, action) => {
             try {
                 let res = action.payload;
-                state.name = res.name;
-                state.userId = res.id;
-                state.mail = res.userMail;
 
                 if (res.hasOwnProperty('message')) {
                     alert(res.message);
                 } else {
+                    state.name = res.name;
+                    state.userId = res.id;
+                    state.mail = res.userMail;
+
                     localStorage.setItem("user", JSON.stringify({
                         name: res.name,
                         userId: res.userId,
@@ -39,13 +40,14 @@ export const taskReduser = createSlice({
         builder.addCase(autoriseUserData.fulfilled, (state, action) => {
             try {
                 let res = action.payload;
-                state.name = res.name;
-                state.userId = res.id;
-                state.mail = res.userMail;
 
                 if (res.hasOwnProperty('message')) {
                     alert(res.message);
                 } else {
+                    state.name = res.name;
+                    state.userId = res.id;
+                    state.mail = res.userMail;
+
                     localStorage.setItem("user", JSON.stringify({
                         name: res.name,
                         userId: res.userId,

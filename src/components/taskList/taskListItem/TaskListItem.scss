@@ -1,0 +1,18 @@
+.task-item_wrapper {
+    padding: 10px;
+    border-radius: 8px;
+    // box-shadow: var(--box-shadow-light);
+    border: 1px solid var(--main-color);
+}
+.task-item_title {
+    font-size: 14px;
+    color: var(--text-color);
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+.task-item_footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+}

@@ -6,6 +6,7 @@ header {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    height: 40px;
 }
 .controlls {
     display: flex;
@@ -22,4 +23,8 @@ header {
 .header-link:hover {
     color: var(--header-text-color-hover);
     transition: all 0.3s;
+}
+.header-logo {
+    text-transform: uppercase;
+    color: white;
 }

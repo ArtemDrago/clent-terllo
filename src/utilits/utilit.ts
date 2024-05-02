@@ -30,3 +30,17 @@ export const autoriseUser = async (user: UserFormState) => {
         console.log(er);
     }
 };
+
+// task
+export const getAllTasks = async (user_id: Number) => {
+    try {
+        const resp = await axios.get(`${serverPath}task`, {
+            params: {
+                user_id
+            },
+        });
+        return resp.data;
+    } catch (er) {
+        console.log(er);
+    }
+};

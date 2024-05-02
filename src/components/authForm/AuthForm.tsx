@@ -8,11 +8,9 @@ import { Button, TextField } from '@mui/material';
 import { useContext, useEffect } from 'react';
 import { autoriseUserData, saveUserData } from '../../store/redusers/asyncUserReducer';
 import { AuthContext } from '../../context/context';
+import { getAllUserTasks } from '../../store/redusers/asyncTaskReducer';
 
-interface AuthFormProps {
-};
-
-const AuthForm: React.FC<AuthFormProps> = ({ }) => {
+const AuthForm = ({ }) => {
     const { pathname } = useLocation();
     const { setAuth } = useContext(AuthContext);
     const state = useAppSelector(state => state.user);
@@ -48,6 +46,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ }) => {
                 if (!res.payload.hasOwnProperty('message')) {
                     setAuth(true);
                     navigate('/');
+                    dispatch(getAllUserTasks(res.payload.id));
                 }
             });
         }
@@ -150,7 +149,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ }) => {
             </form>
         </div>
     );
-}
+};
 
 export default AuthForm;
 

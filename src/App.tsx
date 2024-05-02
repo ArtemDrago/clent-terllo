@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MainPage from './pages/mainPage/MainPage';
-import TasksPage from './pages/tasksPage/TaskList';
+import TasksPage from './pages/tasksPage/TaskPage';
 import PersonalPage from './pages/personalPage/PersonalPage';
 import AuthPage from './pages/authPage/AuthPage';
 import { autoriseUserData } from './store/redusers/asyncUserReducer';
 import { UserFormState } from './models/models';
 import { AuthContext } from './context/context';
+import { getAllUserTasks } from './store/redusers/asyncTaskReducer';
 
 function App() {
   const [auth, setAuth] = useState<boolean | string | null>(!!JSON.parse(localStorage.getItem('auth') || "false"));
@@ -20,7 +21,11 @@ function App() {
     dispatch(autoriseUserData({
       name: _data?.name,
       password: _data?.password
-    }));
+    })).then((res) => {
+      if (!res.payload.hasOwnProperty('message')) {
+        dispatch(getAllUserTasks(res.payload.id));
+      }
+    });
   }
 
   const routerAuth = createBrowserRouter([
