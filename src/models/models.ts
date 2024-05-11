@@ -22,6 +22,18 @@ export interface ColumnTask {
     tasks: TaskItem[];
 };
 
+export interface ChangeTask {
+    user_id: Number | null,
+    task_id: Number,
+    newTitle?: String,
+    newDescription?: String,
+    newTimer?: Number,
+    newDataExpiration?: String,
+    newDeadline?: String,
+    newCollumn?: Number | null,
+    newPositionCollumn?: Number | null,
+};
+
 export enum TaskTypes {
     TaskItem,
     TaskState,

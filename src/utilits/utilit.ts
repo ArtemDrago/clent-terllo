@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UserFormState } from "../models/models";
+import { ChangeTask, TaskItem, UserFormState } from "../models/models";
 import { serverPath } from "./constants";
 
 //user
@@ -43,4 +43,33 @@ export const getAllTasks = async (user_id: Number) => {
     } catch (er) {
         console.log(er);
     }
+};
+
+export const changeTaskAction = async (data: ChangeTask) => {
+    try {
+        const resp = await axios.put(`${serverPath}task/${data.task_id}`, {
+            ...data
+        });
+        return resp.data;
+    } catch (er) {
+        console.log(er);
+    }
+};
+
+export function swapElementsInCollumn(arr: TaskItem[], elem: TaskItem, position: number): TaskItem[] | [] {
+    if (!arr || !elem || !position) return [];
+
+    let leftElements: TaskItem[] = [];
+    let rigthElements: TaskItem[] = [];
+
+    if (position <= 1) {
+        rigthElements = arr;
+    } else {
+        leftElements = arr.slice(0, position);
+        leftElements = leftElements.filter(el => el.id !== elem.id);
+        rigthElements = arr.slice(position);
+    }
+    rigthElements = rigthElements.filter(el => el.id !== elem.id);
+
+    return [...leftElements, elem, ...rigthElements];
 };

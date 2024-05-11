@@ -6,12 +6,13 @@ import TasksPage from './pages/tasksPage/TaskPage';
 import PersonalPage from './pages/personalPage/PersonalPage';
 import AuthPage from './pages/authPage/AuthPage';
 import { autoriseUserData } from './store/redusers/asyncUserReducer';
-import { UserFormState } from './models/models';
+import { TaskItem, UserFormState } from './models/models';
 import { AuthContext } from './context/context';
 import { getAllUserTasks } from './store/redusers/asyncTaskReducer';
 
 function App() {
   const [auth, setAuth] = useState<boolean | string | null>(!!JSON.parse(localStorage.getItem('auth') || "false"));
+  const [hoverItem, setHoverItem] = useState<TaskItem | null>(null);
   const state = useAppSelector(state => state.user);
   const dispatch = useAppDispatch();
   let _storageDataUser = localStorage.getItem('user');
@@ -71,7 +72,9 @@ function App() {
     <AuthContext.Provider
       value={{
         auth,
-        setAuth
+        setAuth,
+        hoverItem,
+        setHoverItem,
       }}
     >
       <RouterProvider router={auth ? routerAuth : router} />
