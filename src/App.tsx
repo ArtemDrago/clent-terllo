@@ -10,9 +10,12 @@ import { TaskItem, UserFormState } from './models/models';
 import { AuthContext } from './context/context';
 import { getAllUserTasks } from './store/redusers/asyncTaskReducer';
 
+
+
 function App() {
   const [auth, setAuth] = useState<boolean | string | null>(!!JSON.parse(localStorage.getItem('auth') || "false"));
   const [hoverItem, setHoverItem] = useState<TaskItem | null>(null);
+
   const state = useAppSelector(state => state.user);
   const dispatch = useAppDispatch();
   let _storageDataUser = localStorage.getItem('user');

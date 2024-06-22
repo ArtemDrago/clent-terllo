@@ -1,9 +1,9 @@
 import './TasksPage.scss';
-import TaskList from '../../components/taskList/TaskList';
+import DescTasks from '../../components/tasks/DescTask';
 
 const TasksPage = () => {
     return (
-        <TaskList />
+        <DescTasks withScrollableColumns />
     );
 };
 

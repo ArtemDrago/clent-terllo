@@ -56,7 +56,7 @@ export const changeTaskAction = async (data: ChangeTask) => {
     }
 };
 
-export function swapElementsInCollumn(arr: TaskItem[], elem: TaskItem, position: number): TaskItem[] | [] {
+export function swapElementsInColumn(arr: TaskItem[], elem: TaskItem, position: number): TaskItem[] | [] {
     if (!arr || !elem || !position) return [];
 
     let leftElements: TaskItem[] = [];
@@ -69,7 +69,16 @@ export function swapElementsInCollumn(arr: TaskItem[], elem: TaskItem, position:
         leftElements = leftElements.filter(el => el.id !== elem.id);
         rightElements = arr.slice(position - 1);
     }
-    rightElements = rightElements.filter(el => el.id !== elem.id);
+    let test = arr.splice(position + 1, 0, elem);
+    test.forEach((el) => {
+        console.log('test', el.id)
+    });
 
+    // rightElements.forEach((el) => {
+    //     console.log(el.id)
+    // });
+
+    rightElements = rightElements.filter(el => el.id !== elem.id);
+    return arr.splice(position, 0, elem);
     return [...leftElements, elem, ...rightElements];
 };

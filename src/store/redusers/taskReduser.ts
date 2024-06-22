@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TaskItem, TaskState } from "../../models/models";
+import { TaskState } from "../../models/models";
 import { changeTask, getAllUserTasks } from "./asyncTaskReducer";
-import { swapElementsInCollumn } from "../../utilits/utilit";
 
 const initialState: TaskState = {
     tasks: [],
@@ -17,30 +16,22 @@ export const taskReduser = createSlice({
             let newColumn = +action.payload?.column_number;
             let newPosition = action.payload?.position_in_column;
             let oldColumn = action.payload?.oldColumn;
-            let oldPosition = action.payload?.oldPosition;
 
             let tasksColumn = state.tasks
-                .filter(task => task.collumn === newColumn)
+                .filter(task => task.collumn === newColumn && task.id !== taskId)
                 .sort((a, b) => +a.positionCollumn - +b.positionCollumn);
             let task = state.tasks.filter(task => task.id === taskId)[0];
 
             if (!taskId || !newColumn || !task) return;
-            if (!newPosition) {
-                if (oldColumn !== newColumn) {
-                    newPosition = +tasksColumn[tasksColumn.length - 1].positionCollumn;
-                }
-            }
-            if (
-                newPosition !== oldPosition ||
-                newColumn !== oldColumn
-            ) {
+
+            if (newColumn !== oldColumn) {
                 task.collumn = newColumn;
                 task.positionCollumn = newPosition;
             }
-            let arr = swapElementsInCollumn(tasksColumn, task, newPosition);
+            tasksColumn.splice(newPosition, 0, task);
 
-            for (let i = 0; i < arr.length; i++) {
-                arr[i].positionCollumn = i + 1;
+            for (let i = 0; i < tasksColumn.length; i++) {
+                tasksColumn[i].positionCollumn = i;
             }
         },
     },
