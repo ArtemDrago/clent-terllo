@@ -60,16 +60,16 @@ export function swapElementsInCollumn(arr: TaskItem[], elem: TaskItem, position:
     if (!arr || !elem || !position) return [];
 
     let leftElements: TaskItem[] = [];
-    let rigthElements: TaskItem[] = [];
+    let rightElements: TaskItem[] = [];
 
     if (position <= 1) {
-        rigthElements = arr;
+        rightElements = arr;
     } else {
-        leftElements = arr.slice(0, position);
+        leftElements = arr.slice(0, position - 1);
         leftElements = leftElements.filter(el => el.id !== elem.id);
-        rigthElements = arr.slice(position);
+        rightElements = arr.slice(position - 1);
     }
-    rigthElements = rigthElements.filter(el => el.id !== elem.id);
+    rightElements = rightElements.filter(el => el.id !== elem.id);
 
-    return [...leftElements, elem, ...rigthElements];
+    return [...leftElements, elem, ...rightElements];
 };

@@ -1,5 +1,6 @@
 :root {
   --main-color:  #0A5F38;
+  --accept-main-color:  #0a5f3720;
   --header-text-color: white;
   --header-text-color-hover: red;
   --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -29,4 +30,8 @@ body {
   display: flex;
   flex-direction: column;
   max-height: calc(100vh - 100px);
+}
+.drag-body {
+  background-color: var(--text-color);
+  border-radius: 8px;
 }
